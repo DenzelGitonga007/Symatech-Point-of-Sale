@@ -7,6 +7,11 @@ window._ = _;
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
+// Added code
+import * as bootstrap from 'bootstrap'
+window.bootstrap = bootstrap
+
+
 import axios from 'axios';
 window.axios = axios;
 
