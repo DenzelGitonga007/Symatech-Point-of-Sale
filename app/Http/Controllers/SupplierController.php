@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Suppier;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
-class SuppierController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class SuppierController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Suppier  $suppier
+     * @param  \App\Models\Supplier  $suppier
      * @return \Illuminate\Http\Response
      */
-    public function show(Suppier $suppier)
+    public function show(Supplier $supplier)
     {
         //
     }
@@ -52,10 +52,10 @@ class SuppierController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Suppier  $suppier
+     * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function edit(Suppier $suppier)
+    public function edit(Supplier $supplier)
     {
         //
     }
@@ -64,10 +64,10 @@ class SuppierController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Suppier  $suppier
+     * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Suppier $suppier)
+    public function update(Request $request, Supplier $supplier)
     {
         //
     }
@@ -75,10 +75,10 @@ class SuppierController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Suppier  $suppier
+     * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Suppier $suppier)
+    public function destroy(Supplier $supplier)
     {
         //
     }

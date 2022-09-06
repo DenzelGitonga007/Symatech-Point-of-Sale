@@ -19,9 +19,14 @@ return new class extends Migration
             // Additional fields
 
             // The relationships
-            $table->foreignId('order_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreignId('order_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             // $table->foreignId('product_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('product_id');
+            // $table->integer('product_id');
+
+
+            // The relationship
+            $table->foreignId('order_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('product_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
     
             $table->integer('quantity');
             $table->integer('unitprice');
