@@ -10,17 +10,17 @@
 
         <!-- Products -->
         <li>
-            <a href="">Products</a>
+            <a href="{{ route('products.index') }}"> <i class="fa fa-box"></i> Products</a>
         </li>
 
         <!-- Orders -->
         <li>
-            <a href="{{ route('orders.index') }}"> <i class="fa fa-box"></i> Orders</a>
+            <a href="{{ route('orders.index') }}"> <i class="fa fa-truck"></i> Orders</a>
         </li>
 
         <!-- Transactions -->
         <li>
-            <a href="">Transactions</a>
+            <a href="{{ route('transactions.index') }}"> <i class="fa fa-money-bill"></i> Transactions</a>
         </li>
     </ul>
 </nav>
