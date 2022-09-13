@@ -5,6 +5,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
 
@@ -36,11 +37,11 @@ Route::middleware([
 
 // Defining the routes as per the resources
 // eg orders.index or orders.save etc
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', HomeController::class)->name('home');
 
-Route::resource('/orders', 'OrderController@index'); //orders.index
-Route::resource('/products', 'ProductController'); //products.index
-Route::resource('/suppliers', 'SupplierController'); //suppliers.index
-Route::resource('/users', 'UserController'); //users.index
-Route::resource('/companies', 'CompanyController'); //companies.index
-Route::resource('/transactions', 'TransactionController'); //transactions.index
+Route::resource('/orders', OrderController::class); //orders.index
+Route::resource('/products', ProductController::class); //products.index
+Route::resource('/suppliers', SupplierController::class); //suppliers.index
+Route::resource('users', UserController::class); //users.index
+Route::resource('/companies', CompanyController::class); //companies.index
+Route::resource('/transactions', TransactionController::class); //transactions.index
