@@ -2,6 +2,17 @@
 <x-app-layout>
     <!-- The users crud -->
     <div class="container-fluid">
+        <!-- The success message upon creation of a user -->
+        @if (Session::has('success'))
+            <div class="alert alert-success" role="alert">
+                {{ Session::get('success') }}
+            </div>
+        @elseif (Session::has('fail'))  
+             <div class="alert alert-danger" role="alert">
+                {{ Session::get('fail') }}
+             </div> 
+        @endif
+        <!-- The users table -->
         <div class="row">
             <div class="col-md-9">
                 <div class="card">
@@ -58,7 +69,54 @@
                 </div>
                 <div class="modal-body">
                     <!-- Form for adding a new user -->
-                    <form action=""></form>
+                    <form action="{{ route('users.store') }}" method="POST"> 
+                        <!-- The cross-site forgery token -->
+                        @csrf 
+                        <!-- The input fields -->
+                        <!-- Name -->
+                        <div class="form-group">
+                            <label for="" class="form-label">Name</label>
+                            <input type="text" class="form-control" name="name">
+                        </div>
+                        
+                        <!-- Email -->
+                        <div class="form-group" style="margin-top: 12px;">
+                            <label for="" class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email">
+                        </div>
+                        
+                        <!-- Phone -->
+                        <div class="form-group" style="margin-top: 12px;">
+                            <label for="" class="form-label">Phone</label>
+                            <input type="tel" class="form-control" name="phone">
+                        </div>
+                        
+                        <!-- Password -->
+                        <div class="form-group" style="margin-top: 12px;">
+                            <label for="" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                        
+                        <!-- Confirm Password -->
+                        <div class="form-group" style="margin-top: 12px;">
+                            <label for="" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" name="confirm_password">
+                        </div>
+                        
+                        <!-- Role -->
+                        <div class="form-group" style="margin-top: 12px;">
+                            <label for="" class="form-label">Role</label>
+                            <select name="is_admin" id="" class="form-control">
+                                <option value="1">Admin</option>
+                                <option value="2">Customer</option>
+                            </select>
+                        </div>
+                        <br>
+                        <!-- The save button     -->
+                        <div class="modal-footer" style="margin-top: 12px;">
+                            <button class="btn btn-outline-success w-100">Save User</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -69,7 +127,7 @@
         .modal.right .modal-dialog {
             top: 0;
             right: 0;
-            margin-right: 20vh;
+            margin-right: 19vh;
         }
 
         .modal.fade:not(.in).right .modal-dialog {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -28,15 +29,28 @@ class UserController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        //
+        //Save the user details into the db
+        // $users = User::create($request->all());
+        $users = new User();
+
+            $users->name = $request->name;
+            $users->email = $request->email;
+            // $users->phone = $request->phone;
+            $users->password = bcrypt($request->password);
+            // $users->role = $request->role;
+
+            $users->save();
+
+        // To validate successful creation of user
+        if ($users) {
+            return redirect()->back()->with('success', "User created successfully...their details are in the table below...");
+        }
+        else {
+            return redirect()->back()->with('fail', "User not created successfully!!!");
+        }
     }
 
     /**
