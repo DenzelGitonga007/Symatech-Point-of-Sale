@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
 
             // Additional field
-            $table->tinyInteger('is_admin')->default(2);
+            $table->tinyInteger('role')->default(2);
              
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();

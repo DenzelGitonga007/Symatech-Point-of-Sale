@@ -14,9 +14,11 @@ class UserController extends Controller
      */
     public function index()
     {
+
+        // Fetching the users from the db
+        $users = User::paginate(5); //Display 5 records
         //Return the users.index
-        // return view('users.index', ['slot' => '']); -- trying to work out the "Undefined variable $slot"
-        return view('users.index');
+        return view('users.index', ['users' => $users]);
     }
 
     /**
@@ -40,7 +42,7 @@ class UserController extends Controller
             $users->email = $request->email;
             // $users->phone = $request->phone;
             $users->password = bcrypt($request->password);
-            // $users->role = $request->role;
+            $users->role = $request->role;
 
             $users->save();
 

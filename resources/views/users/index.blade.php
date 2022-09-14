@@ -29,18 +29,27 @@
                                         <th>#</th>
                                         <th>Name</th>
                                         <th>Email</th>
-                                        <th>Phone</th>
+                                        <!-- <th>Phone</th> -->
                                         <th>Role</th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
+                                    <!-- Displaying the users -->
+                                    @foreach ($users as $user)
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <!-- Not to display the 1 and/or 2 for the user roles -->
+                                        <td>@if ($user->role == 1) 
+                                                Admin
+                                            @else 
+                                                Customer
+                                            @endif
+                                        </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -106,7 +115,7 @@
                         <!-- Role -->
                         <div class="form-group" style="margin-top: 12px;">
                             <label for="" class="form-label">Role</label>
-                            <select name="is_admin" id="" class="form-control">
+                            <select name="role" id="" class="form-control">
                                 <option value="1">Admin</option>
                                 <option value="2">Customer</option>
                             </select>
