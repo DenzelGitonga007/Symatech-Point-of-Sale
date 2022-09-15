@@ -3,14 +3,22 @@
     <!-- The users crud -->
     <div class="container-fluid">
         <!-- The success message upon creation of a user -->
-        @if (Session::has('success'))
+        @if (Session::has('user_create_success'))
             <div class="alert alert-success" role="alert">
-                {{ Session::get('success') }}
+                {{ Session::get('user_create_success') }}
             </div>
-        @elseif (Session::has('fail'))  
+        @elseif (Session::has('user_create_fail'))  
              <div class="alert alert-danger" role="alert">
-                {{ Session::get('fail') }}
-             </div> 
+                {{ Session::get('user_create_fail') }}
+             </div>
+        @elseif (Session::has('success_edit'))
+            <div class="alert alert-success" role="alert">
+                {{ Session::get('success_edit') }}
+            </div>
+        @elseif (Session::has('edit_error'))
+            <div class="alert alert-success" role="alert">
+                {{ Session::get('edit_error') }}
+            </div>         
         @endif
         <!-- The users table -->
         <div class="row">

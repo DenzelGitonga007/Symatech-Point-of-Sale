@@ -44,49 +44,40 @@ class UserController extends Controller
             $users->password = bcrypt($request->password);
             $users->role = $request->role;
 
-            $users->save();
+        $users->save();
 
         // To validate successful creation of user
         if ($users) {
-            return redirect()->back()->with('success', "User created successfully...their details are in the table below...");
+            return redirect()->back()->with('user_create_success', "User created successfully...their details are in the table below...");
         }
         else {
-            return redirect()->back()->with('fail', "User not created successfully!!!");
+            return redirect()->back()->with('user_create_fail', "User not created successfully!!!");
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        //Update the user details
+        $users = User::find($id);
+        // To check if user is found
+        if (!$users) {
+            return back()->with('edit_error', "User not found!");
+        }
+        $users->role = $request->input('role'); //To capture the role input field
+
+        $users->update($request->all());
+        return back()->with('success_edit', "User updated successfully...");
+        
     }
 
     /**
