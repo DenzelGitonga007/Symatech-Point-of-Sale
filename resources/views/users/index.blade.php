@@ -18,7 +18,7 @@
                 <div class="card">
                     <div class="card-header"> 
                         <h4 style="float: left;">Add User</h4> 
-                        <a href="#" style="float: right;" class="btn btn-success" data-toggle="modal" data-target="#addUser"> 
+                        <a href="#" style="float: right;" class="btn btn-outline-success" data-toggle="modal" data-target="#addUser"> 
                         <i class="fa fa-plus"></i> Add New User</a> 
                     </div>
                         <div class="card-body">
@@ -31,6 +31,8 @@
                                         <th>Email</th>
                                         <!-- <th>Phone</th> -->
                                         <th>Role</th>
+                                        <!-- The other crud actions -->
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
 
@@ -48,7 +50,89 @@
                                                 Customer
                                             @endif
                                         </td>
+
+                                        <!-- The other crud actions -->
+                                        <td>
+                                            <!-- Edit -->
+                                            <div class="btn-group">
+                                                <a href="#" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#editUser{{ $user->id }}">
+                                                    <i class="fa fa-edit"></i>
+                                                    Edit
+                                                </a>
+                                            </div>
+
+                                            <!-- Delete -->
+                                            <div class="btn-group">
+                                                <a href="#" class="btn btn-outline-danger btn-sm">
+                                                    <i class="fa fa-trash"></i>
+                                                    Delete
+                                                </a>
+                                            </div>
+                                        </td>
                                     </tr>
+                                    <!-- Modal to edit user -->
+                                    <div class="modal right fade" id="editUser{{ $user->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="addUserLabel">Edit {{ $user->name }}</h4>
+                                                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Form for adding a new user -->
+                                                    <form action="{{ route('users.update', $user->id) }}" method="POST"> 
+                                                        <!-- The cross-site forgery token -->
+                                                        @csrf 
+                                                        @method('put') <!-- Updates the resource -->
+                                                        <!-- The input fields -->
+                                                        <!-- Name -->
+                                                        <div class="form-group">
+                                                            <label for="" class="form-label">Name</label>
+                                                            <input type="text" class="form-control" name="name" value="{{ $user->name }}">
+                                                        </div>
+                                                        
+                                                        <!-- Email -->
+                                                        <div class="form-group" style="margin-top: 12px;">
+                                                            <label for="" class="form-label">Email</label>
+                                                            <input type="email" class="form-control" name="email" value="{{ $user->email }}">
+                                                        </div>
+                                                        
+                                                        <!-- Phone -->
+                                                        <!-- <div class="form-group" style="margin-top: 12px;">
+                                                            <label for="" class="form-label">Phone</label>
+                                                            <input type="tel" class="form-control" name="phone">
+                                                        </div> -->
+                                                        
+                                                        <!-- Password -->
+                                                        <div class="form-group" style="margin-top: 12px;">
+                                                            <label for="" class="form-label">Password</label>
+                                                            <input type="password" class="form-control" name="password" readonly value="{{ $user->password }}">
+                                                        </div>
+                                                        
+                                                        <!-- Confirm Password -->
+                                                        <!-- <div class="form-group" style="margin-top: 12px;">
+                                                            <label for="" class="form-label">Confirm Password</label>
+                                                            <input type="password" class="form-control" name="confirm_password">
+                                                        </div> -->
+                                                        
+                                                        <!-- Role -->
+                                                        <div class="form-group" style="margin-top: 12px;">
+                                                            <label for="" class="form-label">Role</label>
+                                                            <select name="role" id="" class="form-control">
+                                                                <option value="1" @if ($user->role == 1) selected @endif> Admin</option>
+                                                                <option value="2" @if ($user->role == 2) selected @endif> Customer</option>
+                                                            </select>
+                                                        </div>
+                                                        <br>
+                                                        <!-- The save button     -->
+                                                        <div class="modal-footer" style="margin-top: 12px;">
+                                                            <button class="btn btn-outline-success w-100">Update {{$user->name }} Details</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -68,7 +152,6 @@
     </div>
 
     <!-- Modal to add new user -->
-    <!-- Modal -->
     <div class="modal right fade" id="addUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -131,7 +214,9 @@
         </div>
     </div>
 
-    <!-- Style for the modal -->
+   
+
+    <!-- Style for the modal for adding new user-->
     <style>
         .modal.right .modal-dialog {
             top: 0;
