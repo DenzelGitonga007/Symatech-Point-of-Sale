@@ -16,7 +16,7 @@ class UserController extends Controller
     {
 
         // Fetching the users from the db
-        $users = User::paginate(5); //Display 5 records
+        $users = User::paginate(6); //Display 5 records
         //Return the users.index
         return view('users.index', ['users' => $users]);
     }
@@ -76,18 +76,21 @@ class UserController extends Controller
         $users->role = $request->input('role'); //To capture the role input field
 
         $users->update($request->all());
-        return back()->with('success_edit', "User updated successfully...");
+        return back()->with('edit_success', "User updated successfully...");
         
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        //Delete the user details
+        $users = User::find($id);
+        // To check if user exists
+        if (!$users) {
+            return back()->with('delete_error', "User not found!");
+        }
+        else {
+            $users->delete();
+            return back()->with('delete_success', "User deleted successfully...");
+        }
     }
 }

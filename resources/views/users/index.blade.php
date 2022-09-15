@@ -3,22 +3,36 @@
     <!-- The users crud -->
     <div class="container-fluid">
         <!-- The success message upon creation of a user -->
+            <!-- Successfull user creation -->
         @if (Session::has('user_create_success'))
             <div class="alert alert-success" role="alert">
                 {{ Session::get('user_create_success') }}
             </div>
+            <!-- Fail to create user -->
         @elseif (Session::has('user_create_fail'))  
              <div class="alert alert-danger" role="alert">
                 {{ Session::get('user_create_fail') }}
              </div>
-        @elseif (Session::has('success_edit'))
+             <!-- Successfull user details update -->
+        @elseif (Session::has('edit_success'))
             <div class="alert alert-success" role="alert">
-                {{ Session::get('success_edit') }}
+                {{ Session::get('edit_success') }}
             </div>
+            <!-- Fail to update user -->
         @elseif (Session::has('edit_error'))
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-danger" role="alert">
                 {{ Session::get('edit_error') }}
-            </div>         
+            </div>
+            <!-- Successfull user deletion -->
+        @elseif (Session::has('delete_success'))
+            <div class="alert alert-success" role="alert">
+                {{ Session::get('delete_success') }}
+            </div>
+           <!-- Successfull user deletion -->
+        @elseif (Session::has('delete_error'))
+            <div class="alert alert-success" role="alert">
+                {{ Session::get('delete_error') }}
+            </div>
         @endif
         <!-- The users table -->
         <div class="row">
@@ -63,7 +77,7 @@
                                         <td>
                                             <!-- Edit -->
                                             <div class="btn-group">
-                                                <a href="#" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#editUser{{ $user->id }}">
+                                                <a href="#" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#editUser{{ $user->id }}">
                                                     <i class="fa fa-edit"></i>
                                                     Edit
                                                 </a>
@@ -71,7 +85,7 @@
 
                                             <!-- Delete -->
                                             <div class="btn-group">
-                                                <a href="#" class="btn btn-outline-danger btn-sm">
+                                                <a href="#" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#deleteUser{{ $user->id }}">
                                                     <i class="fa fa-trash"></i>
                                                     Delete
                                                 </a>
@@ -135,6 +149,42 @@
                                                         <!-- The save button     -->
                                                         <div class="modal-footer" style="margin-top: 12px;">
                                                             <button class="btn btn-outline-success w-100">Update {{$user->name }} Details</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Modal to delete user -->
+                                    <div class="modal center fade" id="deleteUser{{ $user->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="addUserLabel">Edit {{ $user->name }}</h4>
+                                                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Form for adding a new user -->
+                                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST"> 
+                                                        <!-- The cross-site forgery token -->
+                                                        @csrf 
+                                                        @method('delete') <!-- Updates the resource -->
+                                                        <!-- The input fields -->
+                                                        <!-- Name -->
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <p>Are you sure you want to delete {{ $user->name }}?</p>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <br>
+                                                        <!-- The Delete button     -->
+                                                        <div class="modal-footer" style="margin-top: 12px;">
+                                                            <!-- Cancel -->
+                                                            <button class="btn btn-outline-info" data-dismiss="modal">Cancel</button>
+                                                            <!-- Confirm -->
+                                                            <button class="btn btn-outline-danger">Yes, delete {{$user->name }} </button>
                                                         </div>
                                                     </form>
                                                 </div>
