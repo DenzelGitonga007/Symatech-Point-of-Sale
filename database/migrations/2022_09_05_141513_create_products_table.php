@@ -18,11 +18,12 @@ return new class extends Migration
 
             // Additional fields
             $table->string('product_name');
-            $table->text('description');
-            $table->string('brand');
+            $table->string('brand'); 
             $table->integer('price');
             $table->integer('quantity');
             $table->integer('alert_stock')->default('100');
+            $table->text('description');
+            
 
             $table->timestamps();
         });

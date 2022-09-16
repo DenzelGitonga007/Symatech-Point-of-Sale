@@ -22,25 +22,18 @@ class ProductController extends Controller
         return view('products.index', ['products' => $products]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        //Saving the product details into the db
+        Product::create($request->all());
+
+        // Return after saving
+        return redirect()->back()->with('product_create_success', "Product created successfully...");
     }
 
     /**

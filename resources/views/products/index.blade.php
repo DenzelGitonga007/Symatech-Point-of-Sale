@@ -250,7 +250,7 @@
                         <!-- Stock -->
                         <div class="form-group" style="margin-top: 12px;">
                             <label for="" class="form-label">Stock</label>
-                            <input type="number" class="form-control" name="stock">
+                            <input type="number" class="form-control" name="alert_stock">
                         </div>
 
                         <!-- Description -->
