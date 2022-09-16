@@ -49,10 +49,12 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <!-- <th>Phone</th> -->
-                                        <th>Role</th>
+                                        <th>Product Name</th>
+                                        <th>Brand</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Stock</th>
+                                        <th>Description</th>
                                         <!-- The other crud actions -->
                                         <th>Actions</th>
                                     </tr>
@@ -63,16 +65,18 @@
                                     @foreach ($products as $product)
                                     <tr>
                                         <td>{{ $product->id }}</td>
-                                        <td>{{ $product->name }}</td>
-                                        <td>{{ $product->email }}</td>
-                                        <!-- Not to display the 1 and/or 2 for the product roles -->
-                                        <td>@if ($product->role == 1) 
-                                                Admin
-                                            @else 
-                                                Customer
+                                        <td>{{ $product->product_name }}</td>
+                                        <td>{{ $product->brand }}</td>
+                                        <td>{{ number_format($product->price, 2) }}</td>
+                                        <td>{{ $product->quantity }}</td>
+                                        <td>
+                                            @if ($product->alert_stock < $product->quantity)
+                                                <span class="badge badge-danger">Low stock>>{{ $product->alert_stock }}</span>
+                                            @else
+                                                <span class="badge badge-success">{{ $product->alert_stock }}</span>
                                             @endif
                                         </td>
-
+                                        <td>{{ $product->description }}</td>
                                         <!-- The other crud actions -->
                                         <td>
                                             <!-- Edit -->
