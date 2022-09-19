@@ -16,7 +16,7 @@ class ProductController extends Controller
     {
         //The product.index view
         // Fetching the data from the db and paginating it on the view
-        $products = Product::paginate(2); //Display 5 records
+        $products = Product::paginate(5); //Display 5 records
 
         // Returning the view now
         return view('products.index', ['products' => $products]);

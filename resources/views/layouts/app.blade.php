@@ -92,6 +92,11 @@
                 font-weight: bolder;
                 /* text-transform: uppercase; */
             }
+
+            /* .card-header{
+                background-color: rgb(52, 73, 94);
+                color: #fff;
+            } */
         </style>
 
         @stack('modals')

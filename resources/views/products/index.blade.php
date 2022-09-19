@@ -45,6 +45,7 @@
                     </div>
                         <div class="card-body">
                             <!-- The products crud table -->
+                            
                             <table class="table table-bordered table-left table-responsive">
                                 <thead>
                                     <tr>
@@ -194,8 +195,11 @@
                                         </div>
                                     </div>
                                     @endforeach
+                                    <br>
                                 </tbody>
+                                
                             </table>
+                            {{ $products->links() }}
                         </div>
                 </div>
             </div>
