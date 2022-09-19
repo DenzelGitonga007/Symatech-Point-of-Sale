@@ -24,9 +24,9 @@
                 {{ Session::get('product_create_fail') }}
             </div>
             <!-- Successfull product deletion -->
-        @elseif (Session::has('delete_success'))
+        @elseif (Session::has('product_delete_success'))
             <div class="alert alert-success" role="alert">
-                {{ Session::get('delete_success') }}
+                {{ Session::get('product_delete_success') }}
             </div>
            <!-- Successfull product deletion -->
         @elseif (Session::has('delete_error'))
@@ -163,7 +163,7 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title" id="addproductLabel">Edit {{ $product->name }}</h4>
+                                                    <h4 class="modal-title" id="addproductLabel">Delete {{ $product->product_name }}</h4>
                                                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
@@ -171,12 +171,12 @@
                                                     <form action="{{ route('products.destroy', $product->id) }}" method="POST"> 
                                                         <!-- The cross-site forgery token -->
                                                         @csrf 
-                                                        @method('delete') <!-- Updates the resource -->
+                                                        @method('delete') <!-- Deletes the resource -->
                                                         <!-- The input fields -->
                                                         <!-- Name -->
                                                         <div class="card">
                                                             <div class="card-body">
-                                                                <p>Are you sure you want to delete {{ $product->name }}?</p>
+                                                                <p>Are you sure you want to delete {{ $product->product_name }}?</p>
                                                             </div>
                                                         </div>
                                                         
@@ -186,7 +186,7 @@
                                                             <!-- Cancel -->
                                                             <button class="btn btn-outline-info" data-dismiss="modal">Cancel</button>
                                                             <!-- Confirm -->
-                                                            <button class="btn btn-outline-danger">Yes, delete {{$product->name }} </button>
+                                                            <button class="btn btn-outline-danger">Yes, delete {{$product->product_name }} </button>
                                                         </div>
                                                     </form>
                                                 </div>
