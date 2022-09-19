@@ -14,14 +14,14 @@
                 {{ Session::get('product_create_fail') }}
              </div>
              <!-- Successfull product details update -->
-        @elseif (Session::has('edit_success'))
+        @elseif (Session::has('product_update_success'))
             <div class="alert alert-success" role="alert">
-                {{ Session::get('edit_success') }}
+                {{ Session::get('product_update_success') }}
             </div>
             <!-- Fail to update product -->
-        @elseif (Session::has('edit_error'))
+        @elseif (Session::has('product_create_fail'))
             <div class="alert alert-danger" role="alert">
-                {{ Session::get('edit_error') }}
+                {{ Session::get('product_create_fail') }}
             </div>
             <!-- Successfull product deletion -->
         @elseif (Session::has('delete_success'))
@@ -101,58 +101,56 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title" id="addproductLabel">Edit {{ $product->name }}</h4>
+                                                    <h4 class="modal-title" id="addproductLabel">Edit {{ $product->product_name }}</h4>
                                                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <!-- Form for adding a new product -->
+                                                    <!-- Form for editing a product -->
                                                     <form action="{{ route('products.update', $product->id) }}" method="POST"> 
                                                         <!-- The cross-site forgery token -->
                                                         @csrf 
-                                                        @method('put') <!-- Updates the resource -->
+                                                        <!-- The method for updating -->
+                                                        @method('put')
                                                         <!-- The input fields -->
-                                                        <!-- Name -->
+                                                        <!-- Product Name -->
                                                         <div class="form-group">
-                                                            <label for="" class="form-label">Name</label>
-                                                            <input type="text" class="form-control" name="name" value="{{ $product->name }}">
+                                                            <label for="" class="form-label">Product Name</label>
+                                                            <input type="text" class="form-control" name="product_name" value="{{ $product->product_name }}">
                                                         </div>
                                                         
-                                                        <!-- Email -->
+                                                        <!-- Brand -->
                                                         <div class="form-group" style="margin-top: 12px;">
-                                                            <label for="" class="form-label">Email</label>
-                                                            <input type="email" class="form-control" name="email" value="{{ $product->email }}">
+                                                            <label for="" class="form-label">Brand</label>
+                                                            <input type="text" name="brand" class="form-control" value="{{ $product->brand }}">
+                                                        </div>
+                                                
+                                                        <!-- Price -->
+                                                        <div class="form-group" style="margin-top: 12px;">
+                                                            <label for="" class="form-label">Price</label>
+                                                            <input type="number" class="form-control" name="price" value="{{ $product->price }}">
                                                         </div>
                                                         
-                                                        <!-- Phone -->
-                                                        <!-- <div class="form-group" style="margin-top: 12px;">
-                                                            <label for="" class="form-label">Phone</label>
-                                                            <input type="tel" class="form-control" name="phone">
-                                                        </div> -->
-                                                        
-                                                        <!-- Password -->
+                                                        <!-- Quantity -->
                                                         <div class="form-group" style="margin-top: 12px;">
-                                                            <label for="" class="form-label">Password</label>
-                                                            <input type="password" class="form-control" name="password" readonly value="{{ $product->password }}">
+                                                            <label for="" class="form-label">Quantity</label>
+                                                            <input type="number" class="form-control" name="quantity" value="{{ $product->quantity }}">
                                                         </div>
                                                         
-                                                        <!-- Confirm Password -->
-                                                        <!-- <div class="form-group" style="margin-top: 12px;">
-                                                            <label for="" class="form-label">Confirm Password</label>
-                                                            <input type="password" class="form-control" name="confirm_password">
-                                                        </div> -->
-                                                        
-                                                        <!-- Role -->
+                                                        <!-- Stock -->
                                                         <div class="form-group" style="margin-top: 12px;">
-                                                            <label for="" class="form-label">Role</label>
-                                                            <select name="role" id="" class="form-control">
-                                                                <option value="1" @if ($product->role == 1) selected @endif> Admin</option>
-                                                                <option value="2" @if ($product->role == 2) selected @endif> Customer</option>
-                                                            </select>
+                                                            <label for="" class="form-label">Stock</label>
+                                                            <input type="number" class="form-control" name="alert_stock" value="{{ $product->alert_stock }}">
+                                                        </div>
+
+                                                        <!-- Description -->
+                                                        <div class="form-group" style="margin-top: 12px;">
+                                                            <label for="" class="form-label">Description</label>
+                                                            <textarea name="description" id="" cols="30" rows="2" class="form-control">{{ $product->description }}</textarea>
                                                         </div>
                                                         <br>
                                                         <!-- The save button     -->
                                                         <div class="modal-footer" style="margin-top: 12px;">
-                                                            <button class="btn btn-outline-success w-100">Update {{$product->name }} Details</button>
+                                                            <button class="btn btn-outline-success w-100">Update {{ $product->product_name }}</button>
                                                         </div>
                                                     </form>
                                                 </div>

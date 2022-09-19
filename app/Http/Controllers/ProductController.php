@@ -67,7 +67,11 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        //Saving the edited product details
+        $product->update($request->all());
+
+        // Return after updating
+        return redirect()->back()->with('product_update_success', "Product updated successfully...");
     }
 
     /**
