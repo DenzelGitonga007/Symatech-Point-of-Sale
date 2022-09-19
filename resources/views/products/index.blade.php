@@ -45,7 +45,7 @@
                     </div>
                         <div class="card-body">
                             <!-- The products crud table -->
-                            <table class="table table-bordered table-left">
+                            <table class="table table-bordered table-left table-responsive">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -53,7 +53,7 @@
                                         <th>Brand</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
-                                        <th>Stock</th>
+                                        <th>Stock Status</th>
                                         <th>Description</th>
                                         <!-- The other crud actions -->
                                         <th>Actions</th>
@@ -71,9 +71,9 @@
                                         <td>{{ $product->quantity }}</td>
                                         <td>
                                             @if ($product->alert_stock < $product->quantity)
-                                                <span class="badge badge-danger">Low stock>>{{ $product->alert_stock }}</span>
+                                                <span class="badge bg-danger">Low stock -> {{ $product->alert_stock }}</span>
                                             @else
-                                                <span class="badge badge-success">{{ $product->alert_stock }}</span>
+                                                <span class="badge bg-success">{{ $product->alert_stock }}</span>
                                             @endif
                                         </td>
                                         <td>{{ $product->description }}</td>
