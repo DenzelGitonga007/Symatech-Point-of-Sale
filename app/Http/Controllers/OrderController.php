@@ -14,7 +14,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        //Return the orders view
+        return view('orders.index');
     }
 
     /**
