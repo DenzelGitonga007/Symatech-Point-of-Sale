@@ -26,18 +26,63 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Product Name</th>
-                                        <th>Brand</th>
-                                        <th>Price</th>
+                                        <!-- <th>Description</th> -->
                                         <th>Quantity</th>
-                                        <th>Stock Status</th>
-                                        <th>Description</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <!-- <th>Stock Status</th> -->
+                                        
                                         <!-- The other crud actions -->
-                                        <th>Actions</th>
+                                        <!-- <th>Actions</th> -->
+                                        <!-- To add another product -->
+                                        <th>
+                                            <a href="" class="btn btn-sm btn-success add_more">
+                                                <i class="fa fa-plus"></i>
+                                            </a>
+                                        </th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     <!-- Displaying the products -->
+                                    <tr>
+                                        <!-- Id -->
+                                        <td></td>
+                                        <!-- Product name -->
+                                        <td>
+                                            <select name="product_id" id="product_id" class="form-select form-control product_id" aria-label="Default select example">
+                                                @foreach ($products as $product)
+                                                    <option selected>Select product</option>
+                                                    <option value="{{ $product->id }}">{{ $product->product_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <!-- Product description -->
+                                        <!-- <td>
+                                            <textarea name="description" id="description" cols="30" rows="10">
+                                                
+                                            </textarea>
+                                        </td> -->
+                                        <!-- Quantity -->
+                                        <td>
+                                            <input type="number" name="quantity[]" id="quantity" class="form-control">
+                                        </td>
+                                        <!-- Price -->
+                                        <td>
+                                            <input type="number" name="price[]" id="price" class="form-control">
+                                        </td>
+                                        <!-- Total -->
+                                        <td>
+                                            <input type="number" name="total[]" id="total" class="form-control" disabled>
+                                        </td>
+                                        <!-- To delete the product from the order table -->
+                                        <td>
+                                            <a href="" class="btn btn-sm btn-danger delete">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                        </td>
+
+                                    </tr>
                                     
                                 </tbody>
                                 
