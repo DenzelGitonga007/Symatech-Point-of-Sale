@@ -36,18 +36,18 @@
                                         <!-- <th>Actions</th> -->
                                         <!-- To add another product -->
                                         <th>
-                                            <a href="" class="btn btn-sm btn-success add_more">
+                                            <a href="" class="btn btn-sm btn-outline-success add_more">
                                                 <i class="fa fa-plus"></i>
                                             </a>
                                         </th>
                                     </tr>
                                 </thead>
 
-                                <tbody>
+                                <tbody class="addMoreProduct">
                                     <!-- Displaying the products -->
                                     <tr>
                                         <!-- Id -->
-                                        <td></td>
+                                        <td>1</td>
                                         <!-- Product name -->
                                         <td>
                                             <select name="product_id" id="product_id" class="form-select form-control product_id" aria-label="Default select example">
@@ -73,11 +73,11 @@
                                         </td>
                                         <!-- Total -->
                                         <td>
-                                            <input type="number" name="total[]" id="total" class="form-control" disabled>
+                                            <input type="number" name="total_amount[]" id="total_amount" class="form-control" disabled>
                                         </td>
                                         <!-- To delete the product from the order table -->
                                         <td>
-                                            <a href="" class="btn btn-sm btn-danger delete">
+                                            <a href="" class="btn btn-sm btn-outline-danger delete rounded-circle">
                                                 <i class="fa fa-times"></i>
                                             </a>
                                         </td>
@@ -180,4 +180,29 @@
             transform: translate(25%, 0, 0);
         }
     </style>
+    <!-- The JavaScript for adding a product into the ordered-products table -->
+    @section('script')
+        <script>
+            $('.add_more').on('click', function(){
+                // Prevent page reload
+                event.preventDefault();
+                var product = $('.product_id').html();
+                var numberofrow = ($('.addMoreProduct tr').length - 0) + 1;
+                // Adding products onto the order table
+                var tr = '<tr><td class"no"">' + numberofrow + '</td>' +
+                        '<td><select class="form-control product_id" name="product_id[]" >' + product + 
+                        ' </select></td>' +
+                        '<td> <input type="number" name="quatity[]" class="form-control"></td>'+
+                        '<td> <input type="number" name="price[]" class="form-control"></td>'+
+                        '<td> <input type="number" name="total_amount[]" class="form-control"></td>'+
+                        // To delete the added products
+                        '<td> <a class="btn btn-sm btn-outline-danger delete rounded-circle"><i class="fa fa-times-circle"></a></td>';
+                // Append onto the table
+                $('.addMoreProduct').append(tr);
+                
+                                  
+            })
+
+        </script>
+    @endsection
 </x-app-layout>
