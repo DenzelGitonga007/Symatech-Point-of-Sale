@@ -36,7 +36,7 @@
                                         <!-- <th>Actions</th> -->
                                         <!-- To add another product -->
                                         <th>
-                                            <a href="" class="btn btn-sm btn-outline-success add_more">
+                                            <a href="" class="btn btn-sm btn-outline-success add_more rounded-circle">
                                                 <i class="fa fa-plus"></i>
                                             </a>
                                         </th>
@@ -77,7 +77,7 @@
                                         </td>
                                         <!-- To delete the product from the order table -->
                                         <td>
-                                            <a href="" class="btn btn-sm btn-outline-danger delete rounded-circle">
+                                            <a href="" class="btn btn-sm btn-outline-danger rounded-circle">
                                                 <i class="fa fa-times"></i>
                                             </a>
                                         </td>
@@ -198,9 +198,11 @@
                         // To delete the added products
                         '<td> <a class="btn btn-sm btn-outline-danger delete rounded-circle"><i class="fa fa-times-circle"></a></td>';
                 // Append onto the table
-                $('.addMoreProduct').append(tr);
-                
-                                  
+                $('.addMoreProduct').append(tr);                      
+            })
+            // To delete the added product(s) row
+            $('.addMoreProduct').delegate('.delete', 'click', function(){
+                $(this).parent().parent().remove();
             })
 
         </script>
