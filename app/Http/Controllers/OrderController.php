@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -15,11 +16,14 @@ class OrderController extends Controller
      */
     public function index()
     {
-        // Finding the products
+        // Finding the products to display on the table
         $products = Product::all();
+        // Calling the orders model
         $orders = Order::all();
+        // Calling the users model to display the customer details
+        $users = User::all();
         //Return the orders view
-        return view('orders.index', ['products' => $products, 'orders' => $orders]);
+        return view('orders.index', ['products' => $products, 'orders' => $orders, 'users' => $users]);
     }
 
     /**

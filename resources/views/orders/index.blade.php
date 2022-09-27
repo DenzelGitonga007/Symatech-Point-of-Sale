@@ -11,7 +11,7 @@
         @endif
         <!-- The products table -->
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <div class="card">
                     <div class="card-header"> 
                         <h4 style="float: left;">Ordered Product</h4> 
@@ -91,14 +91,38 @@
                         </div>
                 </div>
             </div>
-
-            <div class="col-md-3">
+            <!-- Displaying the total and the pay section -->
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-header"> 
                         <h4>Total <b class="total"> 00.00 </b></h4> 
                     </div>
                         <div class="card-body">
-                            ....
+                            <div class="panel">
+                                <div class="row">
+                                    <table class="table table-striped">
+                                        <tr>
+                                            <!-- Calling the user details on the foreach loop -->
+                                            @foreach ($users as $user)
+                                            <!-- Customer_name -->
+                                            <td>
+                                                <label for="" class="form-label">Name</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text"name="customer_name" id="" class="form-control" value="{{ $user -> name }}" disabled>
+                                                    </div>
+                                            </td>
+                                            <!-- Customer phone number -->
+                                            <td>
+                                                <label for="" class="form-label">Phone Number</label>
+                                                    <div class="col-md-6">
+                                                        <input type="number" name="name" id="" class="form-control">
+                                                    </div>
+                                            </td>
+                                            @endforeach
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                 </div>
             </div>
