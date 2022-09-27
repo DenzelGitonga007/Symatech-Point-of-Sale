@@ -15,7 +15,7 @@
                 <div class="card">
                     <div class="card-header"> 
                         <h4 style="float: left;">Ordered Product</h4> 
-                        <a href="#" style="float: right;" class="btn btn-outline-success" data-toggle="modal" data-target="#addproduct"> 
+                        <a href="#" style="float: right;" class="btn btn-outline-success add_more"> 
                         <i class="fa fa-plus"></i> Order A New Product</a> 
                     </div>
                         <div class="card-body">
@@ -107,20 +107,57 @@
                                             <!-- Customer_name -->
                                             <td>
                                                 <label for="" class="form-label">Name</label>
-                                                    <div class="col-md-6">
-                                                        <input type="text"name="customer_name" id="" class="form-control" value="{{ $user -> name }}" disabled>
-                                                    </div>
+                                                <input type="text"name="customer_name" id="" class="form-control" value="{{ $user -> name }}" disabled>
                                             </td>
                                             <!-- Customer phone number -->
                                             <td>
                                                 <label for="" class="form-label">Phone Number</label>
-                                                    <div class="col-md-6">
-                                                        <input type="number" name="name" id="" class="form-control">
-                                                    </div>
+                                                <input type="number" name="name" id="" class="form-control">  
                                             </td>
                                             @endforeach
                                         </tr>
                                     </table>
+                                    <!-- The payment option -->
+                                    <td>
+                                        <h4 class="card-header">Payment</h4>
+                                        <br>
+                                        <div class="card-body">
+                                            <!-- Cash -->
+                                            <span class="form-check form-check-inline">
+                                                <input type="radio" name="payment_method" id="payment_method" class="form-check-input" value="cash" checked>
+                                                <label for="payment_method" class="form-check-label">
+                                                    <i class="fa fa-money-bill text-warning"></i>
+                                                    Cash
+                                                </label>
+                                            </span>
+                                            <!-- MPESA -->
+                                            <span class="form-check form-check-inline">
+                                                <input type="radio" class="form-check-input" name="payment_method" id="payment_method" value="mpesa">
+                                                <label for="payment_method" class="form-check-label">
+                                                    <i class="fa fa-credit-card text-success"></i>
+                                                    Mpesa
+                                                </label>
+                                            </span>
+                                            <!-- Bank Transfer -->
+                                            <span class="form-check form-check-inline">
+                                                <input type="radio" class="form-check-input" name="payment_method" id="payment_method" value="bank">
+                                                <label for="payment_method" class="form-check-label">
+                                                    <i class="fa fa-bank text-danger"></i>
+                                                    Bank
+                                                </label>
+                                            </span>
+                                            <!-- PayPal -->
+                                            <span class="form-check form-check-inline">
+                                                <input type="radio" class="form-check-input" name="payment_method" id="payment_method" value="paypal">
+                                                <label for="payment_method" class="form-check-label">
+                                                    <i class="fa fa-university text-primary"></i>
+                                                    Paypal
+                                                </label>
+                                            </span>
+                                        </div>
+                                        <!-- Pay button -->
+                                        <a href="#" class="btn btn-outline-success w-100">Pay</a>
+                                    </td>
                                 </div>
                             </div>
                         </div>
